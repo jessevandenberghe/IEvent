@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/jessevandenberghe/Downloads/IEvent/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="76e3fb8699aedb2cd65d5397c4fc8dc002f723d2">
+        <dex dex="/Users/jessevandenberghe/Downloads/IEvent/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_033b8916489d5426e210589c09ac095271cb0e5f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jessevandenberghe/.gradle/caches/modules-2/files-2.1/io.realm/realm-annotations/3.7.2/d90ea7e1b575524349742f2ed45c375508daea83/realm-annotations-3.7.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d90ea7e1b575524349742f2ed45c375508daea83">
+        <dex dex="/Users/jessevandenberghe/Downloads/IEvent/app/build/intermediates/transforms/dex/debug/folders/1000/10/realm-annotations-3.7.2_e0641238046843644dacf172a4310f20d9fbcaba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jessevandenberghe/.android/build-cache/1438e921946908cb069ec20c8c5e841c993ce71d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="1f58798c6ba883c164738ecca1b8e38bac987841">
+        <dex dex="/Users/jessevandenberghe/Downloads/IEvent/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9202172c3b0cb22dd1360ba0a2f991c5190191ac/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jessevandenberghe/Downloads/IEvent/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/jessevandenberghe/Downloads/IEvent/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7ad536ca908dfe34b9c1d33e3fc4d92149f2217c/classes.dex" />
+    </item>
+
+</items>
