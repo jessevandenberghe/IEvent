@@ -36,5 +36,18 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    //GSON
+    compile 'com.google.code.gson:gson:2.8.2'
+
+    //RxJava
+    compile 'com.trello:rxlifecycle:1.0'
+    compile 'com.trello:rxlifecycle-android:1.0'
+
     testCompile 'junit:junit:4.12'
 }

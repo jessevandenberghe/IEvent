@@ -1,4 +1,4 @@
-package be.pxl.ievent.Models;
+package be.pxl.ievent.models;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
