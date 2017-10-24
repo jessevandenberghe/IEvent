@@ -124,6 +124,7 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="okio-1.13.0" level="project" />
     <orderEntry type="library" exported="" name="retrofit-2.3.0" level="project" />
+    <orderEntry type="library" exported="" name="android-adapters-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="converter-gson-2.3.0" level="project" />
     <orderEntry type="library" exported="" name="rxandroid-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="rxjava-1.2.1" level="project" />

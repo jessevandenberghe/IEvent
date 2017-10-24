@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="be.pxl.ievent.activities.StudentOverviewActivity">
+
+    <Toolbar
+        android:id="@+id/tb_student_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:title="Seminaries"
+        android:titleTextColor="@color/colorTextWhite"
+        >
+    </Toolbar>
+
+    <TabHost
+        android:id="@+id/th_student_tabcontainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tb_student_header"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                >
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/rl_student_subscribed_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_student_subscribed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_student_open_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_student_open"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_student_all_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_student_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </TabHost>
+
+</RelativeLayout>

@@ -49,5 +49,8 @@ dependencies {
     compile 'com.trello:rxlifecycle:1.0'
     compile 'com.trello:rxlifecycle-android:1.0'
 
+    //Realmadapters
+    compile 'io.realm:android-adapters:2.1.0'
+
     testCompile 'junit:junit:4.12'
 }

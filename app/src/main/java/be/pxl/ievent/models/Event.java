@@ -1,23 +1,37 @@
 package be.pxl.ievent.models;
 
+import be.pxl.ievent.models.apiResponses.Location;
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by jessevandenberghe on 26/09/2017.
  */
 
 public class Event extends RealmObject{
+    @PrimaryKey
     private int id;
     private String name;
+    private String category;
     private Long startDateTime;
     private Long endDateTime;
-    private int location;
-    private int organisator;
+    private Location location;
+    private String LocationName;
+    private String organisator;
     private RealmList<RealmString> speakers;
     private int maxSubscriptions;
     private RealmList<RealmString> subscribers;
     private String description;
+
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public int getId() {
         return id;
@@ -51,19 +65,19 @@ public class Event extends RealmObject{
         this.endDateTime = endDateTime;
     }
 
-    public int getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(int location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
-    public int getOrganisator() {
+    public String getOrganisator() {
         return organisator;
     }
 
-    public void setOrganisator(int organisator) {
+    public void setOrganisator(String organisator) {
         this.organisator = organisator;
     }
 
@@ -97,5 +111,13 @@ public class Event extends RealmObject{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLocationName() {
+        return LocationName;
+    }
+
+    public void setLocationName(String locationName) {
+        LocationName = locationName;
     }
 }

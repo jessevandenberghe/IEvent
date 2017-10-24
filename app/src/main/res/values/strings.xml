@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">IEvent</string>
     <string name="action_settings">Settings</string>
+    <string name="login_pxl_mail">PXL-Mail</string>
+    <string name="login_mail_hint"><![CDATA[<nummer>@student.pxl.be]]></string>
+    <string name="login_password">Wachtwoord</string>
 </resources>

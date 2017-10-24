@@ -3,11 +3,13 @@ package be.pxl.ievent.models.apiResponses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * Created by jessevandenberghe on 03/10/2017.
  */
 
-public class Location {
+public class Location extends RealmObject{
     @SerializedName("lat")
     @Expose
     private Double lat;

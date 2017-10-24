@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context="be.pxl.ievent.activities.LoginActivity">
 
+    <ProgressBar
+        android:id="@+id/pb_login"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_marginTop="-8dp"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:id="@+id/iv_login_logo"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:src="@drawable/logo_pxl"/>
+
     <TextView
+        android:id="@+id/tv_login_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loginscherm"/>
+        android:layout_below="@id/iv_login_logo"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_pxl_mail"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"/>
+    <EditText
+        android:id="@+id/et_login_mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_login_mail"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/login_mail_hint"
+        android:backgroundTint="@color/colorAccent"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_login_mail"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_password"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"/>
+    <EditText
+        android:id="@+id/et_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_login_password"
+        android:textSize="16sp"
+        android:inputType="textPassword"
+        android:backgroundTint="@color/colorAccent"
+        />
+
+    <Button
+        android:id="@+id/btn_login_do"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_login_password"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="LOGIN"
+        android:textColor="@color/colorTextWhite"
+        />
+
+</RelativeLayout>
