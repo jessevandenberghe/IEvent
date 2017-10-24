@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="androidtagview-1.1.4">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/000d38f6b78f52aeb36b7fa85ccdf2a86a3ed59f/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/000d38f6b78f52aeb36b7fa85ccdf2a86a3ed59f/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.lujun/androidtagview/1.1.4/c439d1df5c6cf3aacd595709d5318a3b7c856790/androidtagview-1.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

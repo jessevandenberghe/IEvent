@@ -42,6 +42,7 @@ public class StudentOverviewActivity extends BaseActivity {
         if(mRealm.where(Event.class).count() == 0){
             makeEvent("Kotlin", "AON", "JIDOKA", new Date(2017,10,11,9,00), new Date(2017,10,11,12,00), "Corda, IClassroom");
             makeEvent("Blockchain", "AON", "Appwise", new Date(2017,10,18,9,00), new Date(2017,10,18,12,00), "Corda, IClassroom");
+            makeEvent("OWASP", "SNB", "Fenego", new Date(2017,10,25,9,00), new Date(2017,10,25,12,00), "Corda Conference, Zaal 1");
         }
     }
 
@@ -66,10 +67,18 @@ public class StudentOverviewActivity extends BaseActivity {
         event.setSubscribers(new RealmList<RealmString>());
 
         RealmList<RealmString> subscriberList = new RealmList<RealmString>();
-        subscriberList.add(new RealmString("11501253@student.pxl.be"));
 
-        if(nextID == 1)
+        if(nextID == 1) {
+            subscriberList.add(new RealmString("11501253@student.pxl.be"));
             event.setSubscribers(subscriberList);
+        }
+
+        if(nextID == 3){
+            for (int i = 0; i < 25; i++){
+                subscriberList.add(new RealmString(""));
+            }
+            event.setSubscribers(subscriberList);
+        }
 
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override

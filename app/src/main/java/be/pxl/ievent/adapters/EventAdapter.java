@@ -13,7 +13,7 @@ import java.util.Date;
 
 import be.pxl.ievent.App;
 import be.pxl.ievent.R;
-import be.pxl.ievent.activities.StudentOverviewActivity;
+import be.pxl.ievent.activities.EventDetailActivity;
 import be.pxl.ievent.models.Event;
 import be.pxl.ievent.models.RealmString;
 import butterknife.BindView;
@@ -86,6 +86,7 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
 
         private final View root;
 
+
         @BindView(R.id.event_title) TextView tvTitle;
         @BindView(R.id.event_category) TextView tvCategory;
         @BindView(R.id.event_organisator) TextView tvOrganisator;
@@ -93,6 +94,8 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
         @BindView(R.id.event_time) TextView tvTime;
         @BindView(R.id.event_location) TextView tvLocation;
         @BindView(R.id.event_subscribed) TextView tvSubcribed;
+
+        private Event mEvent;
 
         public EventViewHolder(View itemView) {
             super(itemView);
@@ -104,7 +107,8 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
         @Override
         public void onClick(View view) {
 
-            Intent intent = new Intent(root.getContext(), StudentOverviewActivity.class);
+            Intent intent = new Intent(root.getContext(), EventDetailActivity.class);
+            intent.putExtra("eventId", mEvent.getId());
             root.getContext().startActivity(intent);
 
         }
@@ -126,7 +130,7 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
             tvLocation.setText(event.getLocationName());
             createSubscribedString(event,tvSubcribed);
 
-
+            mEvent = event;
         }
 
         void createSubscribedString(Event event, TextView v){

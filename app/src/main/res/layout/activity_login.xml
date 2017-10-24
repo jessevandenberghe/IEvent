@@ -38,7 +38,7 @@
         android:textSize="16sp"
         android:inputType="textEmailAddress"
         android:hint="@string/login_mail_hint"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorAccentDark"
         />
 
     <TextView
@@ -57,7 +57,7 @@
         android:layout_below="@id/tv_login_password"
         android:textSize="16sp"
         android:inputType="textPassword"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorAccentDark"
         />
 
     <Button

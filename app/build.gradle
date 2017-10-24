@@ -52,5 +52,8 @@ dependencies {
     //Realmadapters
     compile 'io.realm:android-adapters:2.1.0'
 
+    //TagContainer
+    compile 'co.lujun:androidtagview:1.1.4'
+
     testCompile 'junit:junit:4.12'
 }
