@@ -25,35 +25,35 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    //Multidex
+    
+
+    //Butterknife
+    
+    //Retrofit
+    
+    //GSON
+    
+    //RxJava
+    
+    //Realmadapters
+    
+    //TagContainer
+    
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
-
-    //Multidex
     compile 'com.android.support:multidex:1.0.1'
-
-    //Butterknife
     compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
-    //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-
-    //GSON
     compile 'com.google.code.gson:gson:2.8.2'
-
-    //RxJava
     compile 'com.trello:rxlifecycle:1.0'
     compile 'com.trello:rxlifecycle-android:1.0'
-
-    //Realmadapters
     compile 'io.realm:android-adapters:2.1.0'
-
-    //TagContainer
     compile 'co.lujun:androidtagview:1.1.4'
-
     testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

@@ -23,7 +23,16 @@
         </activity>
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.StudentOverviewActivity" />
-        <activity android:name=".activities.EventDetailActivity"></activity>
+        <activity android:name=".activities.EventDetailActivity" />
+        <activity
+            android:name=".activities.TeacherOverviewActivity"
+            android:label="@string/title_activity_teacher_overview"
+            android:parentActivityName=".activities.BaseActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.pxl.ievent.activities.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

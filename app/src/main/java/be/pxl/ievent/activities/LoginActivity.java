@@ -48,12 +48,13 @@ public class LoginActivity extends BaseActivity {
     private void login() {
         App.setUserMail(etLogin.getText().toString());
 
-        if(true || isStudent()){
+        if(isStudent()){
             Intent intent = new Intent(this, StudentOverviewActivity.class);
             startActivity(intent);
         }
-        else{
-            //start lectorOverviewActivity
+        else if(isTeacher()){
+            Intent intent = new Intent(this, TeacherOverviewActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -64,8 +65,15 @@ public class LoginActivity extends BaseActivity {
         return false;
     }
 
+    private boolean isTeacher() {
+        if(etLogin.getText().toString().contains("@pxl.be")){
+            return true;
+        }
+        return false;
+    }
+
     private boolean checkCredentials() {
-        if(etLogin.getText().toString().contains(".pxl.be")){
+        if(etLogin.getText().toString().contains("pxl.be")){
             return true;
         }
         return false;
