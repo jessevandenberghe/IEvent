@@ -5,4 +5,5 @@
     <string name="login_mail_hint"><![CDATA[<nummer>@student.pxl.be]]></string>
     <string name="login_password">Wachtwoord</string>
     <string name="title_activity_teacher_overview">TeacherOverviewActivity</string>
+    <string name="title_activity_create_event">CreateEventActivity</string>
 </resources>

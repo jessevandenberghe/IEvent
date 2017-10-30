@@ -53,34 +53,15 @@
                         android:layout_height="match_parent">
 
                     </android.support.v7.widget.RecyclerView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_student_open_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_student_open"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    </android.support.v7.widget.RecyclerView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_student_all_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_student_all"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    </android.support.v7.widget.RecyclerView>
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab_teacher_overview_add"
+                        android:layout_width="150px"
+                        android:layout_height="150px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="40px"
+                        android:src="@drawable/ic_add_black_24dp"
+                        />
 
                 </RelativeLayout>
 

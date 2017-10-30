@@ -1,5 +1,6 @@
 package be.pxl.ievent.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -29,6 +31,7 @@ public class TeacherOverviewActivity extends BaseActivity {
 
     @BindView(R.id.th_teacher_tabcontainer) TabHost host;
     @BindView(R.id.rv_teacher_overview) RecyclerView rvTeacherOverview;
+
     // @BindView(R.id.rv_student_open) RecyclerView rvOpen;
     // @BindView(R.id.rv_student_all) RecyclerView rvAll;
 
@@ -42,6 +45,7 @@ public class TeacherOverviewActivity extends BaseActivity {
         setupDummyEvents();
         setupTabs();
         setupAdapters();
+        setupFAB();
     }
 
     private void setupDummyEvents() {
@@ -116,6 +120,18 @@ public class TeacherOverviewActivity extends BaseActivity {
             tv.setTextColor(Color.parseColor("#FFFFFF"));
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
         }
+    }
+
+    private void setupFAB(){
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_teacher_overview_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Click action
+                Toast.makeText(TeacherOverviewActivity.this, "Yeaaaaah", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 }

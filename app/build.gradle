@@ -26,20 +26,19 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //Multidex
-    
 
     //Butterknife
-    
+
     //Retrofit
-    
+
     //GSON
-    
+
     //RxJava
-    
+
     //Realmadapters
-    
+
     //TagContainer
-    
+
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
