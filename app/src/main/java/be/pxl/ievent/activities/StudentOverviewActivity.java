@@ -37,7 +37,6 @@ public class StudentOverviewActivity extends BaseActivity {
         setupTabs();
         setupAdapters();
     }
-
     private void setupDummyEvents() {
         if(mRealm.where(Event.class).count() == 0){
             makeEvent("Kotlin", "AON", "JIDOKA", new Date(2017,10,11,9,00), new Date(2017,10,11,12,00), "Corda, IClassroom");

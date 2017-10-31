@@ -129,7 +129,8 @@ public class TeacherOverviewActivity extends BaseActivity {
             public void onClick(View view) {
                 // Click action
                 Toast.makeText(TeacherOverviewActivity.this, "Yeaaaaah", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(TeacherOverviewActivity.this, CreateEventActivity.class);
+                startActivity(intent);
             }
         });
     }
