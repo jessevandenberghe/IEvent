@@ -56,14 +56,11 @@ public class CreateEventActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /* String sDate = etStartDate.getText().toString();
-                String[] sDateSplit = sDate.split(" ");
-                String[] DateSplit = sDateSplit[0].split("/");
-                String[] TimeSplit = sDateSplit[1].split(":"); */
             try {
                 makeEvent(etTitle.getText().toString(), spCategory.getSelectedItem().toString()
                         , etOrganisator.getText().toString()
-                        , new Date(2017, 10, 11, 9, 00), new Date(2017, 10, 11, 12, 00)
+                        , toDate(etStartDate.getText().toString())
+                        , toDate(etEndDate.getText().toString())
                         , etLocationName.getText().toString() + ", " + etLocation.getText().toString()
                         , etDescription.getText().toString(), Integer.parseInt(etAmount.getText().toString()));
                 finish();
@@ -74,7 +71,21 @@ public class CreateEventActivity extends BaseActivity {
             }
         });
     }
+    private Date toDate(String date){
+        try {
+            String sDate = date;
+            String[] sDateSplit = sDate.split(" ");
+            String[] DateSplit = sDateSplit[0].split("/");
+            String[] TimeSplit = sDateSplit[1].split(":");
 
+            return new Date(Integer.parseInt(DateSplit[2]), Integer.parseInt(DateSplit[1]), Integer.parseInt(DateSplit[0]),
+                    Integer.parseInt(TimeSplit[0]), Integer.parseInt(TimeSplit[1]));
+        }
+        catch (Exception e){
+            Toast.makeText(CreateEventActivity.this, "Datum en tijd zijn niet correct ingevuld, bv. 1/1/1990 20:00", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
     private void makeEvent(String title, String category, String organisator, Date startDate, Date endDate, String locationName,
                            String description, Integer maxSubscribers) {
         int nextID = (int) ((mRealm.where(Event.class).max("id")==null? 0 : mRealm.where(Event.class).max("id").intValue()) + 1);
