@@ -33,6 +33,8 @@ public class CreateEventActivity extends BaseActivity {
     @BindView(R.id.et_create_event_location_name) EditText etLocationName;
     @BindView(R.id.et_create_event_start_date) EditText etStartDate;
     @BindView(R.id.et_create_event_end_date) EditText etEndDate;
+    @BindView(R.id.et_create_event_description) EditText etDescription;
+    @BindView(R.id.et_create_event_amount) EditText etAmount;
     @BindView(R.id.spinner_category) Spinner spCategory;
 
     @Override
@@ -58,16 +60,23 @@ public class CreateEventActivity extends BaseActivity {
                 String[] sDateSplit = sDate.split(" ");
                 String[] DateSplit = sDateSplit[0].split("/");
                 String[] TimeSplit = sDateSplit[1].split(":"); */
-
+            try {
                 makeEvent(etTitle.getText().toString(), spCategory.getSelectedItem().toString()
                         , etOrganisator.getText().toString()
-                        , new Date(2017,10,11,9,00), new Date(2017,10,11,12,00)
-                        , etLocationName.getText().toString() + ", " + etLocation.getText().toString());
+                        , new Date(2017, 10, 11, 9, 00), new Date(2017, 10, 11, 12, 00)
+                        , etLocationName.getText().toString() + ", " + etLocation.getText().toString()
+                        , etDescription.getText().toString(), Integer.parseInt(etAmount.getText().toString()));
+                finish();
+            }
+            catch(Exception e){
+                Toast.makeText(CreateEventActivity.this, "Zorg dat alle velden correct ingevuld zijn!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private void makeEvent(String title, String category, String organisator, Date startDate, Date endDate, String locationName) {
+    private void makeEvent(String title, String category, String organisator, Date startDate, Date endDate, String locationName,
+                           String description, Integer maxSubscribers) {
         int nextID = (int) ((mRealm.where(Event.class).max("id")==null? 0 : mRealm.where(Event.class).max("id").intValue()) + 1);
 
         final Event event = new Event();
@@ -79,12 +88,8 @@ public class CreateEventActivity extends BaseActivity {
         event.setStartDateTime(startDate.getTime());
         event.setEndDateTime(endDate.getTime());
         event.setLocationName(locationName);
-        event.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n" +
-                "\n" +
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n" +
-                "\n" +
-                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-        event.setMaxSubscriptions(25);
+        event.setDescription(description);
+        event.setMaxSubscriptions(maxSubscribers);
         event.setSubscribers(new RealmList<RealmString>());
 
         RealmList<RealmString> subscriberList = new RealmList<RealmString>();
