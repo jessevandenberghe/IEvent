@@ -17,4 +17,5 @@
     <string name="event_description">Descriptie: </string>
     <string name="date_hint"><![CDATA[<1/1/1990 20:00>]]></string>
     <string name="amount">Hoeveelheid: </string>
+    <string name="title_activity_edit_event">EditEventActivity</string>
 </resources>

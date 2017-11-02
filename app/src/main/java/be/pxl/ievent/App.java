@@ -22,6 +22,20 @@ public class App extends Application {
         App.userMail = userMail;
     }
 
+    public static boolean isStudent() {
+        if(userMail.contains("@student.pxl.be")){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isTeacher() {
+        if(userMail.contains("@pxl.be")){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

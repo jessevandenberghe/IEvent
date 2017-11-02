@@ -1,5 +1,6 @@
 package be.pxl.ievent.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -68,31 +69,47 @@ public class EventDetailActivity extends BaseActivity {
         tvDate.setText(simpleDate.format(startDate));
         tvTime.setText(simpleHour.format(startDate) + " - " + simpleHour.format(endDate));
         tvLocation.setText(mEvent.getLocationName());
-        createSubscribedString(mEvent, tvSubscribed);
         tvDescription.setText(mEvent.getDescription());
         tcCategory.addTag(mEvent.getCategory());
 
-        
-        if(!mEvent.getSubscribers().contains(new RealmString(App.getUserMail()))
-                && !(mEvent.getMaxSubscriptions() == mEvent.getCurrentSubscriptionCount())){
-            btnSubscribe.setVisibility(View.VISIBLE);
+        if(App.isStudent()) {
 
-            Button btn = (Button) findViewById(R.id.btn_subscribe);
+            createSubscribedString(mEvent, tvSubscribed);
+
+            if (!mEvent.getSubscribers().contains(new RealmString(App.getUserMail()))
+                    && !(mEvent.getMaxSubscriptions() == mEvent.getCurrentSubscriptionCount())) {
+                btnSubscribe.setText("Inschrijven");
+                btnSubscribe.setVisibility(View.VISIBLE);
+
+                Button btn = (Button) findViewById(R.id.btn_subscribe);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        try {
+                            mEvent.addSubscriber((new RealmString(App.getUserMail())));
+                            btnSubscribe.setVisibility(View.INVISIBLE);
+                            finish();
+                        } catch (Exception e) {
+                            Toast.makeText(EventDetailActivity.this, "Inschrijven mislukt!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }
+        else if(App.isTeacher()){
+            FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.fab_change_event);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
-                        mEvent.addSubscriber((new RealmString(App.getUserMail())));
-                        btnSubscribe.setVisibility(View.INVISIBLE);
-                        finish();
-                    }
-                    catch(Exception e){
+                        Intent intent = new Intent(EventDetailActivity.this, EditEventActivity.class);
+                        startActivity(intent);
+                    } catch (Exception e) {
                         Toast.makeText(EventDetailActivity.this, "Inschrijven mislukt!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
-
     }
 
     void createSubscribedString(Event event, TextView v){

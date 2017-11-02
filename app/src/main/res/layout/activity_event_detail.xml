@@ -137,7 +137,6 @@
             android:id="@+id/btn_subscribe"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/et_login_password"
             android:background="@color/colorPrimaryDark"
             android:text="Inschrijven"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -148,6 +147,15 @@
             tools:layout_editor_absoluteX="8dp"
             android:visibility="invisible"/>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_change_event"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible"
+            android:layout_margin="20px"
+            android:src="@drawable/ic_done_white_24dp" />
     </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>

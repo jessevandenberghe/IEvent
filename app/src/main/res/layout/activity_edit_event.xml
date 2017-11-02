@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="be.pxl.ievent.activities.TeacherOverviewActivity">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="be.pxl.ievent.activities.TeacherOverviewActivity">
+
+
+            <Toolbar
+                android:id="@+id/tb_edit_event_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:title="Event bijwerken"
+                android:titleTextColor="@color/colorTextWhite"></Toolbar>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tb_edit_event_header"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="8dp"
+                android:text="@string/event_name"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_name"
+                android:layout_marginLeft="10sp"
+                android:minWidth="300sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_organisor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et_edit_event_name"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_organisor"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_organisor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_organisor"
+                android:layout_marginLeft="10sp"
+                android:minWidth="300sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et_edit_event_organisor"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_category"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinner_edit_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tv_create_event_category"
+                android:layout_below="@+id/tv_edit_event_category"
+                android:layout_marginBottom="8sp"
+                android:minWidth="125sp"
+                android:spinnerMode="dropdown" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/spinner_edit_category"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_location"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_location"
+                android:layout_marginLeft="10sp"
+                android:minWidth="300sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_location_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et_edit_event_location"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_locationName"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_location_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_location_name"
+                android:layout_marginLeft="10sp"
+                android:minWidth="300sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_edit_event_location_name"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_startDate"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_start_date"
+                android:layout_marginLeft="10sp"
+                android:hint="@string/date_hint"
+                android:minWidth="300sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et_edit_event_start_date"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_endDate"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_end_date"
+                android:layout_marginLeft="10sp"
+                android:hint="@string/date_hint"
+                android:minWidth="300sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et_edit_event_end_date"
+                android:layout_marginLeft="10sp"
+                android:text="@string/amount"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_amount"
+                android:layout_marginLeft="10sp"
+                android:minWidth="50sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_edit_event_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/et_edit_event_amount"
+                android:layout_marginLeft="10sp"
+                android:text="@string/event_description"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_edit_event_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_edit_event_description"
+                android:layout_marginLeft="10sp"
+                android:maxWidth="300sp"
+                android:minLines="2"
+                android:minWidth="300sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_edit_event"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="40px"
+        android:src="@drawable/ic_done_white_24dp" />
+</RelativeLayout>
