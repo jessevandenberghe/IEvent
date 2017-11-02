@@ -42,7 +42,6 @@
             android:id="@+id/tv_event_detail_organisator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_event_detail_title"
@@ -55,17 +54,13 @@
             android:layout_height="0dp"
             tools:src="@drawable/ic_subscribe_black"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="0dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_event_detail_organisator"
-            android:layout_marginBottom="0dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_event_detail_organisator" />
 
         <TextView
             android:id="@+id/tv_event_detail_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
             android:layout_marginTop="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_event_detail_organisator"
@@ -77,7 +72,6 @@
             android:id="@+id/tv_event_detail_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="16dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_event_detail_organisator"
@@ -89,7 +83,6 @@
             android:id="@+id/tv_event_detail_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
             android:layout_marginTop="4dp"
             android:textColor="@color/colorTextBlack"
             android:textSize="@dimen/font_normal"
@@ -101,7 +94,6 @@
             android:id="@+id/tv_event_detail_subscribed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="4dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_event_detail_time"
@@ -123,9 +115,7 @@
             app:tag_theme="none"
             app:container_border_color="@color/colorSplashBackground"
             app:container_background_color="@color/colorSplashBackground"
-            android:layout_marginLeft="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginRight="0dp"
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/tc_event_detail_category"
             android:layout_marginTop="32dp"
@@ -135,8 +125,6 @@
             android:id="@+id/tv_event_detail_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="32dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -145,7 +133,21 @@
             android:textSize="@dimen/font_small"
             android:textColor="@color/colorTextBlack"/>
 
-    </android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_subscribe"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_login_password"
+            android:background="@color/colorPrimaryDark"
+            android:text="Inschrijven"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="@color/colorTextWhite"
+            tools:layout_editor_absoluteY="41dp"
+            tools:layout_editor_absoluteX="8dp"
+            android:visibility="invisible"/>
 
+    </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>

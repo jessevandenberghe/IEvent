@@ -97,12 +97,20 @@ public class Event extends RealmObject{
         this.maxSubscriptions = maxSubscriptions;
     }
 
+    public int getCurrentSubscriptionCount(){
+        return subscribers.size();
+    }
+
     public RealmList<RealmString> getSubscribers() {
         return subscribers;
     }
 
     public void setSubscribers(RealmList<RealmString> subscribers) {
         this.subscribers = subscribers;
+    }
+
+    public void addSubscriber(RealmString subscriber){
+        this.subscribers.add(subscriber);
     }
 
     public String getDescription() {

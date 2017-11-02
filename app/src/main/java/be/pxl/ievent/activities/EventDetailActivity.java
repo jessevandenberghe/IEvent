@@ -1,9 +1,12 @@
 package be.pxl.ievent.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
@@ -16,6 +19,7 @@ import be.pxl.ievent.models.RealmString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
+import io.realm.Realm;
 import io.realm.RealmList;
 
 public class EventDetailActivity extends BaseActivity {
@@ -30,6 +34,7 @@ public class EventDetailActivity extends BaseActivity {
     @BindView(R.id.tv_event_detail_description) TextView tvDescription;
     @BindView(R.id.tc_event_detail_category) TagContainerLayout tcCategory;
     @BindView(R.id.iv_event_detail_subscribe) ImageView ivSubscribe;
+    @BindView(R.id.btn_subscribe) Button btnSubscribe;
 
     private Event mEvent;
 
@@ -66,6 +71,27 @@ public class EventDetailActivity extends BaseActivity {
         createSubscribedString(mEvent, tvSubscribed);
         tvDescription.setText(mEvent.getDescription());
         tcCategory.addTag(mEvent.getCategory());
+
+        
+        if(!mEvent.getSubscribers().contains(new RealmString(App.getUserMail()))
+                && !(mEvent.getMaxSubscriptions() == mEvent.getCurrentSubscriptionCount())){
+            btnSubscribe.setVisibility(View.VISIBLE);
+
+            Button btn = (Button) findViewById(R.id.btn_subscribe);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        mEvent.addSubscriber((new RealmString(App.getUserMail())));
+                        btnSubscribe.setVisibility(View.INVISIBLE);
+                        finish();
+                    }
+                    catch(Exception e){
+                        Toast.makeText(EventDetailActivity.this, "Inschrijven mislukt!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
 
     }
 
