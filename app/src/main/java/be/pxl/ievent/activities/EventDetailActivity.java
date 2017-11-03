@@ -94,7 +94,7 @@ public class EventDetailActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         try {
-                            mEvent.addSubscriber((new RealmString(App.getUserMail())));
+                            addSubscriber(App.getUserMail());
                             btnSubscribe.setVisibility(View.INVISIBLE);
                             finish();
                         } catch (Exception e) {
@@ -146,5 +146,11 @@ public class EventDetailActivity extends BaseActivity {
         v.setText("Niet ingeschreven");
         v.setTextColor(getResources().getColor(R.color.colorTextBlack));
         ivSubscribe.setImageResource(R.drawable.ic_subscribe_black);
+    }
+
+    private void addSubscriber(final String subscriber) {
+        mRealm.beginTransaction();
+        mEvent.addSubscriber(new RealmString(subscriber));
+        mRealm.commitTransaction();
     }
 }

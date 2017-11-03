@@ -114,8 +114,9 @@ public class Event extends RealmObject{
         this.subscribers = subscribers;
     }
 
-    public void addSubscriber(RealmString subscriber){
+    public RealmList<RealmString> addSubscriber(RealmString subscriber){
         this.subscribers.add(subscriber);
+        return this.subscribers;
     }
 
     public String getDescription() {

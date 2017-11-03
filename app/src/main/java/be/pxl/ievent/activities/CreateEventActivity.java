@@ -117,7 +117,7 @@ public class CreateEventActivity extends BaseActivity {
             event.setSubscribers(subscriberList);
         }
 
-        mRealm.executeTransaction(new Realm.Transaction() {
+        mRealm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 realm.copyToRealmOrUpdate(event);

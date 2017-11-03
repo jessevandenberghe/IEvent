@@ -123,7 +123,7 @@ public class EditEventActivity extends BaseActivity {
         event.setMaxSubscriptions(maxSubscribers);
         event.setSubscribers(mEvent.getSubscribers());
 
-        mRealm.executeTransaction(new Realm.Transaction() {
+        mRealm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 realm.copyToRealmOrUpdate(event);
