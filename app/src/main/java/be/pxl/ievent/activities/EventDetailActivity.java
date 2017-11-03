@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class EventDetailActivity extends BaseActivity {
 
@@ -84,7 +85,7 @@ public class EventDetailActivity extends BaseActivity {
 
             createSubscribedString(mEvent, tvSubscribed);
 
-            if (!mEvent.getSubscribers().contains(new RealmString(App.getUserMail()))
+            if (!checkSubscribed()
                     && !(mEvent.getMaxSubscriptions() == mEvent.getCurrentSubscriptionCount())) {
                 btnSubscribe.setText("Inschrijven");
                 btnSubscribe.setVisibility(View.VISIBLE);
@@ -99,6 +100,24 @@ public class EventDetailActivity extends BaseActivity {
                             finish();
                         } catch (Exception e) {
                             Toast.makeText(EventDetailActivity.this, "Inschrijven mislukt!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+            else if(checkSubscribed()){
+                btnSubscribe.setText("Uitschrijven");
+                btnSubscribe.setVisibility(View.VISIBLE);
+
+                Button btn = (Button) findViewById(R.id.btn_subscribe);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        try {
+                            removeSubscriber(App.getUserMail());
+                            btnSubscribe.setVisibility(View.INVISIBLE);
+                            finish();
+                        } catch (Exception e) {
+                            Toast.makeText(EventDetailActivity.this, "Uitschrijven mislukt!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -152,5 +171,25 @@ public class EventDetailActivity extends BaseActivity {
         mRealm.beginTransaction();
         mEvent.addSubscriber(new RealmString(subscriber));
         mRealm.commitTransaction();
+    }
+
+    private void removeSubscriber(final String subscriber) {
+        mRealm.beginTransaction();
+        mEvent.removeSubscriber(new RealmString(subscriber));
+        mRealm.commitTransaction();
+    }
+
+    private boolean checkSubscribed() {
+        RealmList<RealmString> subscriberList = mEvent.getSubscribers();
+
+        for (RealmString s : subscriberList) {
+            if (s.getName().equals(App.getUserMail())) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
     }
 }
