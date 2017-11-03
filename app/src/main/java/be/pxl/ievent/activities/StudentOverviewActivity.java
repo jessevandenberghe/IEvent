@@ -54,8 +54,8 @@ public class StudentOverviewActivity extends BaseActivity {
         event.setName(title);
         event.setCategory(category);
         event.setOrganisator(organisator);
-        event.setStartDateTime(startDate.getTime());
-        event.setEndDateTime(endDate.getTime());
+        event.setStartDateTime(startDate);
+        event.setEndDateTime(endDate);
         event.setLocationName(locationName);
         event.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n" +
                 "\n" +

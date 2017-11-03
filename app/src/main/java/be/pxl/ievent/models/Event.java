@@ -1,5 +1,10 @@
 package be.pxl.ievent.models;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+import java.util.Date;
+
 import be.pxl.ievent.models.apiResponses.Location;
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -14,8 +19,8 @@ public class Event extends RealmObject{
     private int id;
     private String name;
     private String category;
-    private Long startDateTime;
-    private Long endDateTime;
+    private Date startDateTime;
+    private Date endDateTime;
     private Location location;
     private String LocationName;
     private String organisator;
@@ -49,19 +54,19 @@ public class Event extends RealmObject{
         this.name = name;
     }
 
-    public Long getStartDateTime() {
+    public Date getStartDateTime() {
         return startDateTime;
     }
 
-    public void setStartDateTime(Long startDateTime) {
+    public void setStartDateTime(Date startDateTime) {
         this.startDateTime = startDateTime;
     }
 
-    public Long getEndDateTime() {
+    public Date getEndDateTime() {
         return endDateTime;
     }
 
-    public void setEndDateTime(Long endDateTime) {
+    public void setEndDateTime(Date endDateTime) {
         this.endDateTime = endDateTime;
     }
 

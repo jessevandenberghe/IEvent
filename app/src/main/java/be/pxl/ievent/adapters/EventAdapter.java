@@ -117,8 +117,8 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
 
 
 
-            Date startDate = new Date(event.getStartDateTime());
-            Date endDate = new Date(event.getEndDateTime());
+            Date startDate = event.getStartDateTime();
+            Date endDate = event.getEndDateTime();
             SimpleDateFormat simpleDate =  new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat simpleHour = new SimpleDateFormat("HH:mm");
 

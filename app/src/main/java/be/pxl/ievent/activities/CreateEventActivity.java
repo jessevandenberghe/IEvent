@@ -96,8 +96,8 @@ public class CreateEventActivity extends BaseActivity {
         event.setName(title);
         event.setCategory(category);
         event.setOrganisator(organisator);
-        event.setStartDateTime(startDate.getTime());
-        event.setEndDateTime(endDate.getTime());
+        event.setStartDateTime(startDate);
+        event.setEndDateTime(endDate);
         event.setLocationName(locationName);
         event.setDescription(description);
         event.setMaxSubscriptions(maxSubscribers);

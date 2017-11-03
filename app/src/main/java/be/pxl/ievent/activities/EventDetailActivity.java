@@ -36,6 +36,7 @@ public class EventDetailActivity extends BaseActivity {
     @BindView(R.id.tc_event_detail_category) TagContainerLayout tcCategory;
     @BindView(R.id.iv_event_detail_subscribe) ImageView ivSubscribe;
     @BindView(R.id.btn_subscribe) Button btnSubscribe;
+    @BindView(R.id.fab_change_event) FloatingActionButton fabEdit;
 
     private Event mEvent;
 
@@ -48,11 +49,16 @@ public class EventDetailActivity extends BaseActivity {
         setup();
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        setup();
+    }
     private void setup() {
         mEvent = mRealm.where(Event.class).equalTo("id", getIntent().getIntExtra("eventId",0)).findFirst();
 
-        Date startDate = new Date(mEvent.getStartDateTime());
-        Date endDate = new Date(mEvent.getEndDateTime());
+        Date startDate = mEvent.getStartDateTime();
+        Date endDate = mEvent.getEndDateTime();
         SimpleDateFormat simpleDate =  new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat simpleHour = new SimpleDateFormat("HH:mm");
 
@@ -70,6 +76,8 @@ public class EventDetailActivity extends BaseActivity {
         tvTime.setText(simpleHour.format(startDate) + " - " + simpleHour.format(endDate));
         tvLocation.setText(mEvent.getLocationName());
         tvDescription.setText(mEvent.getDescription());
+
+        tcCategory.removeAllTags();
         tcCategory.addTag(mEvent.getCategory());
 
         if(App.isStudent()) {
@@ -97,15 +105,18 @@ public class EventDetailActivity extends BaseActivity {
             }
         }
         else if(App.isTeacher()){
+            fabEdit.setVisibility(View.VISIBLE);
+
             FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.fab_change_event);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     try {
                         Intent intent = new Intent(EventDetailActivity.this, EditEventActivity.class);
+                        intent.putExtra("eventId", mEvent.getId());
                         startActivity(intent);
                     } catch (Exception e) {
-                        Toast.makeText(EventDetailActivity.this, "Inschrijven mislukt!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EventDetailActivity.this, "Er is iets fout gelopen!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
