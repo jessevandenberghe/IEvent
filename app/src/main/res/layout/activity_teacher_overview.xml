@@ -12,16 +12,13 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:title="Seminaries"
-        android:titleTextColor="@color/colorTextWhite"
-        >
-    </Toolbar>
+        android:titleTextColor="@color/colorTextWhite"></Toolbar>
 
     <TabHost
         android:id="@+id/th_teacher_tabcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tb_teacher_header"
-        >
+        android:layout_below="@id/tb_teacher_header">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,9 +29,7 @@
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                >
-            </TabWidget>
+                android:background="@color/colorPrimary"></TabWidget>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
@@ -44,8 +39,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_teacher_event_overview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_teacher_overview"
@@ -53,15 +47,20 @@
                         android:layout_height="match_parent">
 
                     </android.support.v7.widget.RecyclerView>
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fab_teacher_overview_add"
-                        android:layout_width="150px"
-                        android:layout_height="150px"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_margin="40px"
-                        android:src="@drawable/ic_add_black_24dp"
-                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_teacher_event_full"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_teacher_full"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
 
                 </RelativeLayout>
 
@@ -70,5 +69,14 @@
         </LinearLayout>
 
     </TabHost>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_teacher_overview_add"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="40px"
+        android:src="@drawable/ic_add_black_24dp" />
 
 </RelativeLayout>

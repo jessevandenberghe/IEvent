@@ -55,6 +55,7 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
         final int onlySubscribed = 1;
         final int onlyOpen = 2;
         final int all = 3;
+        final int full = 4;
 
         boolean subscribed = false;
 
@@ -75,6 +76,12 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
 
         if(filterType == onlySubscribed){
             if(subscribed)
+                return true;
+            else return false;
+        }
+
+        if(filterType == full){
+            if(event.getMaxSubscriptions() == event.getCurrentSubscriptionCount())
                 return true;
             else return false;
         }

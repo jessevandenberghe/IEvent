@@ -31,9 +31,7 @@ public class TeacherOverviewActivity extends BaseActivity {
 
     @BindView(R.id.th_teacher_tabcontainer) TabHost host;
     @BindView(R.id.rv_teacher_overview) RecyclerView rvTeacherOverview;
-
-    // @BindView(R.id.rv_student_open) RecyclerView rvOpen;
-    // @BindView(R.id.rv_student_all) RecyclerView rvAll;
+    @BindView(R.id.rv_teacher_full) RecyclerView rvTeacherFull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +101,9 @@ public class TeacherOverviewActivity extends BaseActivity {
 
         rvTeacherOverview.setLayoutManager(new LinearLayoutManager(this));
         rvTeacherOverview.setAdapter(new EventAdapter(allEvents, true, 3));
+
+        rvTeacherFull.setLayoutManager(new LinearLayoutManager(this));
+        rvTeacherFull.setAdapter(new EventAdapter(allEvents, true, 4));
     }
 
     private void setupTabs() {
@@ -112,6 +113,11 @@ public class TeacherOverviewActivity extends BaseActivity {
         TabHost.TabSpec spec = host.newTabSpec("Alle events");
         spec.setContent(R.id.rl_teacher_event_overview);
         spec.setIndicator("Alle events");
+        host.addTab(spec);
+
+        spec = host.newTabSpec("Volzet");
+        spec.setContent(R.id.rl_teacher_event_full);
+        spec.setIndicator("Volzet");
         host.addTab(spec);
 
         for(int i=0;i<host.getTabWidget().getChildCount();i++)
