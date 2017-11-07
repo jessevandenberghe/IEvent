@@ -139,6 +139,17 @@ public class EventDetailActivity extends BaseActivity {
                 }
             });
         }
+        tvSubscribed.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                try {
+                    Intent intent = new Intent(EventDetailActivity.this, AttendanceListActivity.class);
+                    intent.putExtra("eventId", mEvent.getId());
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(EventDetailActivity.this, "Er is iets fout gelopen!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     void createAmountSubscribedString(Event event, TextView v){

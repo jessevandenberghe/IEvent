@@ -45,7 +45,16 @@
         <activity
             android:name=".activities.EditEventActivity"
             android:label="@string/title_activity_edit_event"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.AttendanceListActivity"
+            android:label="@string/title_activity_attendance_list"
+            android:parentActivityName=".activities.BaseActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.pxl.ievent.activities.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>
