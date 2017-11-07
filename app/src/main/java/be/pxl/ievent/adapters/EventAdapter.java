@@ -128,9 +128,28 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
             tvDate.setText(simpleDate.format(startDate));
             tvTime.setText(simpleHour.format(startDate) + " - " + simpleHour.format(endDate));
             tvLocation.setText(event.getLocationName());
-            createSubscribedString(event,tvSubcribed);
+            if(App.isTeacher()){
+                createAmountSubscribedString(event, tvSubcribed);
+            }
+            else if(App.isStudent()){
+                createSubscribedString(event,tvSubcribed);
+            }
 
             mEvent = event;
+        }
+
+        void createAmountSubscribedString(Event event, TextView v){
+            RealmList<RealmString> subscriberList = event.getSubscribers();
+
+            v.setText(event.getCurrentSubscriptionCount() + "/" + event.getMaxSubscriptions() + " Ingeschreven");
+
+            if(event.getCurrentSubscriptionCount() == event.getMaxSubscriptions()){
+                v.setTextColor(root.getResources().getColor(R.color.colorWarning));
+            }
+            else{
+                v.setTextColor(root.getResources().getColor(R.color.colorAccentDark));
+            }
+            return;
         }
 
         void createSubscribedString(Event event, TextView v){

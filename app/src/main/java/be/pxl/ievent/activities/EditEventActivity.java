@@ -51,6 +51,14 @@ public class EditEventActivity extends BaseActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
+        android.widget.Toolbar toolbar = (android.widget.Toolbar) findViewById(R.id.tb_edit_event_header);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         setup();
         setupFAB();
     }
@@ -60,7 +68,7 @@ public class EditEventActivity extends BaseActivity {
 
         Date startDate = mEvent.getStartDateTime();
         Date endDate = mEvent.getEndDateTime();
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/YYYY HH:mm");
 
         etTitle.setText(mEvent.getName());
         etOrganisator.setText(mEvent.getOrganisator());
@@ -112,7 +120,6 @@ public class EditEventActivity extends BaseActivity {
                            String description, Integer maxSubscribers) {
         final Event event = new Event();
 
-        event.setId(mEvent.getId());
         event.setName(title);
         event.setCategory(category);
         event.setOrganisator(organisator);
@@ -121,9 +128,8 @@ public class EditEventActivity extends BaseActivity {
         event.setLocationName(locationName);
         event.setDescription(description);
         event.setMaxSubscriptions(maxSubscribers);
-        event.setSubscribers(mEvent.getSubscribers());
 
-        mRealm.executeTransactionAsync(new Realm.Transaction() {
+        mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 realm.copyToRealmOrUpdate(event);

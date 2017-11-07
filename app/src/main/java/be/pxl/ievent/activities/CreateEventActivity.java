@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,6 +47,14 @@ public class CreateEventActivity extends BaseActivity {
         String[] items = new String[]{"Applicatie Ontwikkeling", "Software Management", "Systemen en Netwerken"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tb_create_event_header);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         setupFAB();
     }
@@ -117,7 +125,7 @@ public class CreateEventActivity extends BaseActivity {
             event.setSubscribers(subscriberList);
         }
 
-        mRealm.executeTransactionAsync(new Realm.Transaction() {
+        mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 realm.copyToRealmOrUpdate(event);

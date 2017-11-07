@@ -60,7 +60,7 @@ public class EventDetailActivity extends BaseActivity {
 
         Date startDate = mEvent.getStartDateTime();
         Date endDate = mEvent.getEndDateTime();
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd-MM-YYYY");
         SimpleDateFormat simpleHour = new SimpleDateFormat("HH:mm");
 
         tbHeader.setTitle(mEvent.getName());
@@ -82,9 +82,7 @@ public class EventDetailActivity extends BaseActivity {
         tcCategory.addTag(mEvent.getCategory());
 
         if(App.isStudent()) {
-
             createSubscribedString(mEvent, tvSubscribed);
-
             if (!checkSubscribed()
                     && !(mEvent.getMaxSubscriptions() == mEvent.getCurrentSubscriptionCount())) {
                 btnSubscribe.setText("Inschrijven");
@@ -124,6 +122,7 @@ public class EventDetailActivity extends BaseActivity {
             }
         }
         else if(App.isTeacher()){
+            createAmountSubscribedString(mEvent, tvSubscribed);
             fabEdit.setVisibility(View.VISIBLE);
 
             FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.fab_change_event);
@@ -140,6 +139,20 @@ public class EventDetailActivity extends BaseActivity {
                 }
             });
         }
+    }
+
+    void createAmountSubscribedString(Event event, TextView v){
+        RealmList<RealmString> subscriberList = event.getSubscribers();
+
+        v.setText(event.getCurrentSubscriptionCount() + "/" + event.getMaxSubscriptions() + " Ingeschreven");
+
+        if(event.getCurrentSubscriptionCount() == event.getMaxSubscriptions()){
+            v.setTextColor(getResources().getColor(R.color.colorWarning));
+        }
+        else{
+            v.setTextColor(getResources().getColor(R.color.colorAccentDark));
+        }
+        return;
     }
 
     void createSubscribedString(Event event, TextView v){
@@ -175,7 +188,7 @@ public class EventDetailActivity extends BaseActivity {
 
     private void removeSubscriber(final String subscriber) {
         mRealm.beginTransaction();
-        mEvent.removeSubscriber(new RealmString(subscriber));
+        mEvent.removeSubscriber(subscriber);
         mRealm.commitTransaction();
     }
 
@@ -185,9 +198,6 @@ public class EventDetailActivity extends BaseActivity {
         for (RealmString s : subscriberList) {
             if (s.getName().equals(App.getUserMail())) {
                 return true;
-            }
-            else{
-                return false;
             }
         }
         return false;

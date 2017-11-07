@@ -114,14 +114,17 @@ public class Event extends RealmObject{
         this.subscribers = subscribers;
     }
 
-    public RealmList<RealmString> addSubscriber(RealmString subscriber){
+    public void addSubscriber(RealmString subscriber){
         this.subscribers.add(subscriber);
-        return this.subscribers;
     }
 
-    public RealmList<RealmString> removeSubscriber(RealmString subscriber){
-        this.subscribers.remove(subscriber);
-        return this.subscribers;
+    public void removeSubscriber(String subscriber){
+        for(int i = 0; i <= this.getSubscribers().size(); i++)
+        {
+            if(this.getSubscribers().get(i).getName().equals(subscriber)){
+                this.getSubscribers().get(i).deleteFromRealm();
+            }
+        }
     }
 
     public String getDescription() {
