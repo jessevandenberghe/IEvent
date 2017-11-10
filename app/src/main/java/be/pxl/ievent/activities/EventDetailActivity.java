@@ -12,6 +12,7 @@ import android.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import be.pxl.ievent.App;
 import be.pxl.ievent.R;
@@ -20,9 +21,7 @@ import be.pxl.ievent.models.RealmString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
-import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 public class EventDetailActivity extends BaseActivity {
 
@@ -60,8 +59,8 @@ public class EventDetailActivity extends BaseActivity {
 
         Date startDate = mEvent.getStartDateTime();
         Date endDate = mEvent.getEndDateTime();
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd-MM-YYYY");
-        SimpleDateFormat simpleHour = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
+        SimpleDateFormat simpleHour = new SimpleDateFormat("HH:mm", Locale.FRENCH);
 
         tbHeader.setTitle(mEvent.getName());
         tbHeader.setNavigationOnClickListener(new View.OnClickListener() {
@@ -94,6 +93,7 @@ public class EventDetailActivity extends BaseActivity {
                     public void onClick(View view) {
                         try {
                             addSubscriber(App.getUserMail());
+                            App.addEvent(mEvent);
                             btnSubscribe.setVisibility(View.INVISIBLE);
                             finish();
                         } catch (Exception e) {
@@ -112,6 +112,7 @@ public class EventDetailActivity extends BaseActivity {
                     public void onClick(View view) {
                         try {
                             removeSubscriber(App.getUserMail());
+                            App.removeEvents(mEvent);
                             btnSubscribe.setVisibility(View.INVISIBLE);
                             finish();
                         } catch (Exception e) {

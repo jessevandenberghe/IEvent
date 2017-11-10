@@ -1,8 +1,5 @@
 package be.pxl.ievent.models;
 
-import android.os.Parcelable;
-
-import java.io.Serializable;
 import java.util.Date;
 
 import be.pxl.ievent.models.apiResponses.Location;
@@ -141,5 +138,23 @@ public class Event extends RealmObject{
 
     public void setLocationName(String locationName) {
         LocationName = locationName;
+    }
+
+    public void copyEvent(Event e, Location loc){
+        this.id = e.getId();
+        this.name = e.getName();
+        this.category = e.getCategory();
+        this.startDateTime = e.getStartDateTime();
+        this.endDateTime = e.getEndDateTime();
+        Location managedLocation = new Location();
+        managedLocation.setLat(loc.getLat());
+        managedLocation.setLng(loc.getLng());
+        this.location = managedLocation;
+        this.setLocationName(e.getLocationName());
+        this.organisator = e.getOrganisator();
+        this.speakers = e.getSpeakers();
+        this.maxSubscriptions = e.getMaxSubscriptions();
+        this.subscribers = e.getSubscribers();
+        this.description = e.getDescription();
     }
 }

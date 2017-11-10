@@ -167,6 +167,9 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
                 if(s.getName().equals(App.getUserMail())){
                     v.setText("Ingeschreven");
                     v.setTextColor(root.getResources().getColor(R.color.colorAccentDark));
+                    if(!AlreadyInSubsribeList(event)) {
+                        App.addEvent(event);
+                    }
                     return;
                 }
 
@@ -179,6 +182,17 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
 
             v.setText("Niet ingeschreven");
             v.setTextColor(root.getResources().getColor(R.color.colorTextBlack));
+        }
+
+        private boolean AlreadyInSubsribeList(Event event) {
+
+            boolean inList = false;
+
+            for (Event e: App.getSubscribedEvents()) {
+                inList |= e.getId() == event.getId();
+            }
+
+            return inList;
         }
 
         public void ignore() {

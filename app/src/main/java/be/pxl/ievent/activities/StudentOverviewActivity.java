@@ -1,5 +1,6 @@
 package be.pxl.ievent.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +11,14 @@ import android.widget.TextView;
 
 import java.util.Date;
 
+import be.pxl.ievent.App;
 import be.pxl.ievent.R;
 import be.pxl.ievent.adapters.EventAdapter;
 import be.pxl.ievent.models.Event;
 import be.pxl.ievent.models.RealmString;
+import be.pxl.ievent.models.apiResponses.Location;
+import be.pxl.ievent.notification.SeminarNotification;
+import be.pxl.ievent.services.LocationManagerIntentService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -27,15 +32,22 @@ public class StudentOverviewActivity extends BaseActivity {
     @BindView(R.id.rv_student_open) RecyclerView rvOpen;
     @BindView(R.id.rv_student_all) RecyclerView rvAll;
 
+    private static Intent locationManagerIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_overview);
         ButterKnife.bind(this);
 
+        SeminarNotification.notify(App.getContext(), "blub");
+
         setupDummyEvents();
         setupTabs();
         setupAdapters();
+
+        locationManagerIntent = new Intent(App.getContext(), LocationManagerIntentService.class);
+        startService(locationManagerIntent);
     }
     private void setupDummyEvents() {
         if(mRealm.where(Event.class).count() == 0){
@@ -57,6 +69,12 @@ public class StudentOverviewActivity extends BaseActivity {
         event.setStartDateTime(startDate);
         event.setEndDateTime(endDate);
         event.setLocationName(locationName);
+
+        final Location loc = new Location();
+        loc.setLat(10.0);
+        loc.setLng(10.0);
+        event.setLocation(loc);
+
         event.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n" +
                 "\n" +
                 "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n" +
@@ -89,24 +107,6 @@ public class StudentOverviewActivity extends BaseActivity {
 
     private void setupAdapters() {
         RealmResults<Event> allEvents = mRealm.where(Event.class).findAll();
-        /*RealmList<Event> subscribedEvents = new RealmList<Event>();
-        RealmList<Event> unsubscribedOpenEvents = new RealmList<Event>();
-        for (Event event: allEvents) {
-            boolean subscribed = false;
-            for (RealmString sub: event.getSubscribers()) {
-                if(sub.getName().equals(App.getUserMail())) {
-                    subscribed = true;
-                }
-            }
-            if(subscribed){
-                subscribedEvents.add(event);
-            }
-            else{
-                if(event.getSubscribers().size() != event.getMaxSubscriptions()){
-                    unsubscribedOpenEvents.add(event);
-                }
-            }
-        }*/
 
         rvSubscribed.setLayoutManager(new LinearLayoutManager(this));
         rvSubscribed.setAdapter(new EventAdapter(allEvents, true, 1));

@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="be.pxl.ievent">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -55,6 +59,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="be.pxl.ievent.activities.BaseActivity" />
         </activity>
+
+
+        <service android:name=".services.LocationManagerIntentService"/>
+        <service android:name=".services.AttendService"/>
+
+        <receiver android:name=".reciever.GeofenceBroadcastReciever"/>
     </application>
 
 </manifest>
