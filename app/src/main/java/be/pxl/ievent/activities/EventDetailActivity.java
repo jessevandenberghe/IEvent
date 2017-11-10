@@ -80,7 +80,7 @@ public class EventDetailActivity extends BaseActivity {
         tcCategory.removeAllTags();
         tcCategory.addTag(mEvent.getCategory());
 
-        if(App.isStudent()) {
+        if(App.isStudent() && !Attended()) {
             createSubscribedString(mEvent, tvSubscribed);
             if (!checkSubscribed()
                     && !(mEvent.getMaxSubscriptions() == mEvent.getCurrentSubscriptionCount())) {
@@ -151,6 +151,17 @@ public class EventDetailActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private boolean Attended() {
+
+        boolean attended = false;
+
+        for (RealmString attendence: mEvent.getAttendSubscribers()) {
+            attended |= attendence.getName().equals(App.getUserMail());
+        }
+
+        return attended;
     }
 
     void createAmountSubscribedString(Event event, TextView v){

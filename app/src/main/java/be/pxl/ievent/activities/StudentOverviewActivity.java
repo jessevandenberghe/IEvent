@@ -40,7 +40,7 @@ public class StudentOverviewActivity extends BaseActivity {
         setContentView(R.layout.activity_student_overview);
         ButterKnife.bind(this);
 
-        SeminarNotification.notify(App.getContext(), "blub");
+        SeminarNotification.notify(App.getContext(), "Kotlin");
 
         setupDummyEvents();
         setupTabs();

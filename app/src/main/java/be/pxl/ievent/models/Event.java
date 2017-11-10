@@ -24,6 +24,16 @@ public class Event extends RealmObject{
     private RealmList<RealmString> speakers;
     private int maxSubscriptions;
     private RealmList<RealmString> subscribers;
+
+    public RealmList<RealmString> getAttendSubscribers() {
+        return attendSubscribers;
+    }
+
+    public void addAttendSubscribers(RealmString sub) {
+        this.attendSubscribers.add(sub);
+    }
+
+    private RealmList<RealmString> attendSubscribers;
     private String description;
 
 

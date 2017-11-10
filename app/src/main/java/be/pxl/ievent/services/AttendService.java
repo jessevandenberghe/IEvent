@@ -6,6 +6,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import be.pxl.ievent.App;
+import be.pxl.ievent.models.Event;
+import be.pxl.ievent.models.RealmString;
 import be.pxl.ievent.notification.SeminarNotification;
 import io.realm.Realm;
 
@@ -35,5 +37,22 @@ public class AttendService extends Service {
     }
 
     private void AttendEvent() {
+        Realm realm = App.getmRealm();
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Event event = realm.where(Event.class).equalTo("id", App.getEventToAttend()).findFirst();
+
+                event.addAttendSubscribers(new RealmString(App.getUserMail()));
+
+                App.removeEvents(event);
+
+                realm.copyToRealmOrUpdate(event);
+            }
+        });
+
+        realm.close();
+
     }
 }

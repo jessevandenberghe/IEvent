@@ -94,6 +94,7 @@ public class LocationManagerIntentService extends IntentService {
                             close |= loc.distanceTo(userLocation) < 50;
                             Log.i(TAG, "process: " + loc.distanceTo(userLocation));
                             enteredEvent = App.getSubscribedEvents().get(i).getName();
+                            App.setEventToAttend(App.getSubscribedEvents().get(i).getId());
                         }
                         if(close) {
                             return NOTIFY;

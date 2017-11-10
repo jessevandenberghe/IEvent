@@ -22,6 +22,8 @@ public class App extends Application {
 
     private static App app = null;
 
+    private static int eventToAttend = 1;
+
     private static boolean inGeoFence = false;
 
     private static List<Event> subscribedEvents;
@@ -40,6 +42,14 @@ public class App extends Application {
 
     public static List<Event> getSubscribedEvents() {
         return subscribedEvents;
+    }
+
+    public static int getEventToAttend() {
+        return eventToAttend;
+    }
+
+    public static void setEventToAttend(int eventToAttend) {
+        App.eventToAttend = eventToAttend;
     }
 
     public static void setSubscribedEvents(List<Event> subscribedEvents) {

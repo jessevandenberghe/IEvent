@@ -165,10 +165,22 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
 
             for (RealmString s: subscriberList) {
                 if(s.getName().equals(App.getUserMail())){
-                    v.setText("Ingeschreven");
-                    v.setTextColor(root.getResources().getColor(R.color.colorAccentDark));
-                    if(!AlreadyInSubsribeList(event)) {
-                        App.addEvent(event);
+                    boolean attended = false;
+
+                    for (RealmString attendence: event.getAttendSubscribers()) {
+                        attended |= attendence.getName().equals(App.getUserMail());
+                    }
+
+                    if(attended){
+                        v.setText("Bijgewoond");
+                        v.setTextColor(root.getResources().getColor(R.color.colorPrimaryLight));
+                    }
+                    else{
+                        v.setText("Ingeschreven");
+                        v.setTextColor(root.getResources().getColor(R.color.colorAccentDark));
+                        if(!AlreadyInSubsribeList(event)) {
+                            App.addEvent(event);
+                        }
                     }
                     return;
                 }
