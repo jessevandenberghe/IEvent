@@ -9,20 +9,14 @@ import android.util.TypedValue;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import java.util.Date;
-
 import be.pxl.ievent.App;
 import be.pxl.ievent.R;
 import be.pxl.ievent.adapters.EventAdapter;
 import be.pxl.ievent.models.Event;
-import be.pxl.ievent.models.RealmString;
-import be.pxl.ievent.models.apiResponses.Location;
 import be.pxl.ievent.notification.SeminarNotification;
 import be.pxl.ievent.services.LocationManagerIntentService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class StudentOverviewActivity extends BaseActivity {
@@ -41,69 +35,13 @@ public class StudentOverviewActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         SeminarNotification.notify(App.getContext(), "Kotlin");
-
-        setupDummyEvents();
         setupTabs();
         setupAdapters();
 
         locationManagerIntent = new Intent(App.getContext(), LocationManagerIntentService.class);
         startService(locationManagerIntent);
     }
-    private void setupDummyEvents() {
-        if(mRealm.where(Event.class).count() == 0){
-            makeEvent("Kotlin", "AON", "JIDOKA", new Date(2017,10,11,9,00), new Date(2017,10,11,12,00), "Corda, IClassroom");
-            makeEvent("Blockchain", "AON", "Appwise", new Date(2017,10,18,9,00), new Date(2017,10,18,12,00), "Corda, IClassroom");
-            makeEvent("OWASP", "SNB", "Fenego", new Date(2017,10,25,9,00), new Date(2017,10,25,12,00), "Corda Conference, Zaal 1");
-        }
-    }
 
-    private void makeEvent(String title, String category, String organisator, Date startDate, Date endDate, String locationName) {
-        int nextID = (int) ((mRealm.where(Event.class).max("id")==null? 0 : mRealm.where(Event.class).max("id").intValue()) + 1);
-
-        final Event event = new Event();
-
-        event.setId(nextID);
-        event.setName(title);
-        event.setCategory(category);
-        event.setOrganisator(organisator);
-        event.setStartDateTime(startDate);
-        event.setEndDateTime(endDate);
-        event.setLocationName(locationName);
-
-        final Location loc = new Location();
-        loc.setLat(10.0);
-        loc.setLng(10.0);
-        event.setLocation(loc);
-
-        event.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n" +
-                "\n" +
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n" +
-                "\n" +
-                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-        event.setMaxSubscriptions(25);
-        event.setSubscribers(new RealmList<RealmString>());
-
-        RealmList<RealmString> subscriberList = new RealmList<RealmString>();
-
-        if(nextID == 1) {
-            subscriberList.add(new RealmString("11501253@student.pxl.be"));
-            event.setSubscribers(subscriberList);
-        }
-
-        if(nextID == 3){
-            for (int i = 0; i < 25; i++){
-                subscriberList.add(new RealmString(""));
-            }
-            event.setSubscribers(subscriberList);
-        }
-
-        mRealm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                realm.copyToRealmOrUpdate(event);
-            }
-        });
-    }
 
     private void setupAdapters() {
         RealmResults<Event> allEvents = mRealm.where(Event.class).findAll();

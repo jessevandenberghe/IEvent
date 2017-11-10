@@ -124,6 +124,7 @@ public class EventDetailActivity extends BaseActivity {
         }
         else if(App.isTeacher()){
             createAmountSubscribedString(mEvent, tvSubscribed);
+            fabEdit.setImageDrawable(getDrawable(R.drawable.ic_edit_black_24dp));
             fabEdit.setVisibility(View.VISIBLE);
 
             FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.fab_change_event);

@@ -4,23 +4,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Date;
 
+import be.pxl.ievent.App;
 import be.pxl.ievent.R;
 import be.pxl.ievent.adapters.EventAdapter;
 import be.pxl.ievent.models.Event;
 import be.pxl.ievent.models.RealmString;
+import be.pxl.ievent.notification.SeminarNotification;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -39,6 +37,8 @@ public class TeacherOverviewActivity extends BaseActivity {
 
         setContentView(R.layout.activity_teacher_overview);
         ButterKnife.bind(this);
+
+        SeminarNotification.cancel(App.getContext());
 
         setupDummyEvents();
         setupTabs();

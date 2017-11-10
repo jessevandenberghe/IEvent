@@ -1,36 +1,37 @@
 package be.pxl.ievent.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.Date;
 
+import be.pxl.ievent.App;
 import be.pxl.ievent.R;
+import be.pxl.ievent.api.ApiManager;
 import be.pxl.ievent.models.Event;
 import be.pxl.ievent.models.RealmString;
+import be.pxl.ievent.models.apiResponses.GeocodeResponseWrap;
+import be.pxl.ievent.models.apiResponses.Location;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import co.lujun.androidtagview.TagContainerLayout;
 import io.realm.Realm;
 import io.realm.RealmList;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class CreateEventActivity extends BaseActivity {
 
     @BindView(R.id.et_create_event_name) EditText etTitle;
     @BindView(R.id.et_create_event_organisor) EditText etOrganisator;
     @BindView(R.id.et_create_event_location) EditText etLocation;
-    @BindView(R.id.et_create_event_location_name) EditText etLocationName;
     @BindView(R.id.et_create_event_start_date) EditText etStartDate;
     @BindView(R.id.et_create_event_end_date) EditText etEndDate;
     @BindView(R.id.et_create_event_description) EditText etDescription;
@@ -69,7 +70,7 @@ public class CreateEventActivity extends BaseActivity {
                         , etOrganisator.getText().toString()
                         , toDate(etStartDate.getText().toString())
                         , toDate(etEndDate.getText().toString())
-                        , etLocationName.getText().toString() + ", " + etLocation.getText().toString()
+                        , etLocation.getText().toString()
                         , etDescription.getText().toString(), Integer.parseInt(etAmount.getText().toString()));
                 finish();
             }
@@ -125,11 +126,54 @@ public class CreateEventActivity extends BaseActivity {
             event.setSubscribers(subscriberList);
         }
 
-        mRealm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                realm.copyToRealmOrUpdate(event);
-            }
-        });
+        String searchQuery = "";
+
+        if(locationName.toLowerCase().contains("pxl")){
+            searchQuery = "PXL Hasselt";
+        }
+        else if(locationName.toLowerCase().contains("corda")){
+            searchQuery = "Corda Campus";
+        }
+        else{
+            searchQuery = locationName;
+        }
+
+        ApiManager
+                .getGeocode(searchQuery)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GeocodeResponseWrap>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("APITEST", "onError: ", e);
+                        Toast.makeText(CreateEventActivity.this, "IEvent heeft de locatie niet kunnen vastleggen. Probeer een duidelijkere beschrijving.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onNext(GeocodeResponseWrap geocodeResponseWrap) {
+                        Log.i("APITEST", "onNext: " + geocodeResponseWrap.getResults().get(0).getFormattedAddress());
+                        Location loc = new Location();
+                        loc.setLat(geocodeResponseWrap.getResults().get(0).getGeometry().getLocation().getLat());
+                        loc.setLng(geocodeResponseWrap.getResults().get(0).getGeometry().getLocation().getLng());
+                        event.setLocation(loc);
+
+                        Realm realm = App.getmRealm();
+
+                        realm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                realm.copyToRealmOrUpdate(event);
+                            }
+                        });
+
+                        realm.close();
+                    }
+                });
+
     }
 }

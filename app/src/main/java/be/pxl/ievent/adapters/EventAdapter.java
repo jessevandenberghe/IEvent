@@ -148,7 +148,7 @@ public class EventAdapter extends RealmRecyclerViewAdapter<Event,RecyclerView.Vi
         void createAmountSubscribedString(Event event, TextView v){
             RealmList<RealmString> subscriberList = event.getSubscribers();
 
-            v.setText(event.getCurrentSubscriptionCount() + "/" + event.getMaxSubscriptions() + " Ingeschreven");
+            v.setText(event.getCurrentSubscriptionCount() + "/" + event.getMaxSubscriptions());
 
             if(event.getCurrentSubscriptionCount() == event.getMaxSubscriptions()){
                 v.setTextColor(root.getResources().getColor(R.color.colorWarning));

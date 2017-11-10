@@ -1,29 +1,22 @@
 package be.pxl.ievent.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
-import be.pxl.ievent.App;
 import be.pxl.ievent.R;
 import be.pxl.ievent.models.Event;
-import be.pxl.ievent.models.RealmString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
-import io.realm.RealmList;
 
 
 public class EditEventActivity extends BaseActivity {
@@ -31,7 +24,6 @@ public class EditEventActivity extends BaseActivity {
     @BindView(R.id.et_edit_event_name) EditText etTitle;
     @BindView(R.id.et_edit_event_organisor) EditText etOrganisator;
     @BindView(R.id.et_edit_event_location) EditText etLocation;
-    @BindView(R.id.et_edit_event_location_name) EditText etLocationName;
     @BindView(R.id.et_edit_event_start_date) EditText etStartDate;
     @BindView(R.id.et_edit_event_end_date) EditText etEndDate;
     @BindView(R.id.et_edit_event_description) EditText etDescription;
@@ -68,12 +60,12 @@ public class EditEventActivity extends BaseActivity {
 
         Date startDate = mEvent.getStartDateTime();
         Date endDate = mEvent.getEndDateTime();
-        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/YYYY HH:mm");
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.FRENCH);
 
         etTitle.setText(mEvent.getName());
         etOrganisator.setText(mEvent.getOrganisator());
         etAmount.setText(String.valueOf(mEvent.getMaxSubscriptions()));
-        etLocationName.setText(mEvent.getLocationName());
+        etLocation.setText(mEvent.getLocationName());
         etStartDate.setText(simpleDate.format(startDate));
         etEndDate.setText(simpleDate.format(endDate));
         etLocation.setText(mEvent.getLocationName());
@@ -106,7 +98,7 @@ public class EditEventActivity extends BaseActivity {
         try{
             updateEvent(etTitle.getText().toString(), spCategory.getSelectedItem().toString(), etOrganisator.getText().toString(),
                     toDate(etStartDate.getText().toString()), toDate(etEndDate.getText().toString()),
-                            etLocationName.getText().toString(), etDescription.getText().toString(), Integer.parseInt(etAmount.getText().toString()));
+                            etLocation.getText().toString(), etDescription.getText().toString(), Integer.parseInt(etAmount.getText().toString()));
 
             Toast.makeText(EditEventActivity.this, "Bewerken succesvol!", Toast.LENGTH_SHORT).show();
             finish();
